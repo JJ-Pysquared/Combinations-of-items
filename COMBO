@@ -1,30 +1,32 @@
 import itertools
 import pandas as pd
 import numpy as np
-from IPython.display import display, HTML
 
 #CSV= pd.read_csv('Title.csv')
 CSV=[1,2,3,4,5]
 
-df=pd.DataFrame(columns=[])
-print(df)
-num1=1
-num2=1
-df=pd.DataFrame()
+num1=0
+num2=0
+df=pd.DataFrame(columns=["Iterations"])
 df1=pd.DataFrame()
 
 for x in range(len(CSV)):
     var=list(itertools.combinations(CSV, x))
     Ser_ies=pd.Series([var])
+    df1[x]=Ser_ies
     num1+=1
     
-    for y in Ser_ies:
-        #df.loc[num2]=pd.Series(y)
-        df[num2]=pd.Series(y)
-        df1[num2]=Ser_ies
-        num2+=1
+    if len(Ser_ies) != 0:
+        for y in Ser_ies:
+            #df.loc[num2]=pd.Series(y)
+            df.loc[num2,"Iterations"]=y
+            num2+=1
+    else:
+        print("Series is 0")
 
-print("DataFrame1 ")
+print("DataFrame1: ")
+df.columns
 print(df)
-print("DataFrame2 ")
-print(df1.head)
+print("DataFrame2: ")
+print(df1)
+df.to_excel("output.xlsx")
