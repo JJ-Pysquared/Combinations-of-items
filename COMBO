@@ -1,6 +1,6 @@
+import os
 import itertools
 import pandas as pd
-import numpy as np
 
 #CSV= pd.read_csv('Title.csv')
 CSV=[1,2,3,4,5]
@@ -24,9 +24,11 @@ for x in range(len(CSV)):
     else:
         print("Series is 0")
 
-print("DataFrame1: ")
-df.columns
-print(df)
-print("DataFrame2: ")
-print(df1)
-df.to_excel("output.xlsx")
+print ("DataFrame1:\n")
+print (df)
+
+if os.path.exists("output.csv"):
+    os.remove("output.csv")
+    df.to_csv("output.csv")
+else:
+    df.to_csv("output.csv")
